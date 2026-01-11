@@ -51,6 +51,36 @@ const Index = () => {
     },
   ];
 
+  const priceList = [
+    {
+      category: 'Торты',
+      items: [
+        { name: 'Бисквитный торт', weight: '1 кг', price: '2 500 ₽' },
+        { name: 'Муссовый торт', weight: '1 кг', price: '3 200 ₽' },
+        { name: 'Свадебный торт', weight: '1 кг', price: '4 000 ₽' },
+        { name: 'Детский торт с декором', weight: '1 кг', price: '3 500 ₽' },
+      ],
+    },
+    {
+      category: 'Воздушные шары',
+      items: [
+        { name: 'Букет из 5 шаров', weight: '', price: '800 ₽' },
+        { name: 'Арка из шаров (3м)', weight: '', price: '5 500 ₽' },
+        { name: 'Цифра из шаров', weight: '', price: '2 000 ₽' },
+        { name: 'Оформление зала', weight: '', price: 'от 15 000 ₽' },
+      ],
+    },
+    {
+      category: 'Капкейки и десерты',
+      items: [
+        { name: 'Капкейки классические', weight: '1 шт', price: '200 ₽' },
+        { name: 'Макаронс', weight: '1 шт', price: '120 ₽' },
+        { name: 'Эклеры', weight: '1 шт', price: '180 ₽' },
+        { name: 'Торт-цифра', weight: '1 кг', price: '2 800 ₽' },
+      ],
+    },
+  ];
+
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
@@ -69,6 +99,7 @@ const Index = () => {
               <a href="#about" className="text-sm hover:text-primary transition-colors">О студии</a>
               <a href="#services" className="text-sm hover:text-primary transition-colors">Услуги</a>
               <a href="#portfolio" className="text-sm hover:text-primary transition-colors">Портфолио</a>
+              <a href="#prices" className="text-sm hover:text-primary transition-colors">Прайс</a>
               <a href="#masterclasses" className="text-sm hover:text-primary transition-colors">Мастер-классы</a>
               <a href="#contact" className="text-sm hover:text-primary transition-colors">Контакты</a>
             </div>
@@ -221,7 +252,36 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 bg-muted">
+      <section id="prices" className="py-20 px-6 bg-muted">
+        <div className="container mx-auto max-w-6xl">
+          <h3 className="text-5xl font-light text-center mb-16">Прайс-лист</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            {priceList.map((category, index) => (
+              <Card key={index} className="border-0 shadow-lg animate-fade-in">
+                <CardContent className="p-8">
+                  <h4 className="text-2xl font-semibold mb-6 pb-4 border-b border-border">{category.category}</h4>
+                  <div className="space-y-4">
+                    {category.items.map((item, idx) => (
+                      <div key={idx} className="flex justify-between items-start gap-4">
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">{item.name}</p>
+                          {item.weight && <p className="text-xs text-muted-foreground mt-1">{item.weight}</p>}
+                        </div>
+                        <span className="font-semibold text-sm whitespace-nowrap">{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-sm text-muted-foreground">* Точная стоимость рассчитывается индивидуально в зависимости от сложности работы</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 px-6">
         <div className="container mx-auto max-w-4xl">
           <h3 className="text-5xl font-light text-center mb-12">Контакты</h3>
           <div className="grid md:grid-cols-2 gap-12">
